@@ -165,7 +165,7 @@ POLICY:		foreach my $priority (sort {$a <=> $b} keys %{$sessionData->{'Policy'}}
 							return $server->protocol_response(PROTO_DB_ERROR);
 						}
 						# Check if we have a queue tracking item
-						if (defined($qtrack)) {
+						if (defined($qtrack) && defined($qtrack->{'QuotasLimitsID'})) {
 							my $elapsedTime = defined($qtrack->{'LastUpdate'}) ? ( $now - $qtrack->{'LastUpdate'} ) : $quota->{'Period'};
 							# If elapsed time is less than zero, its time diff between servers, meaning no time has elapsed
 							$elapsedTime = 0 if ($elapsedTime < 0);
